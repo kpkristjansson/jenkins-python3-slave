@@ -1,14 +1,20 @@
-name: Docker Image CI
-
+name: Docker build and publish
 on: [push]
-
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag jenkins-python3-slave:$(date +%s)
+      - uses: actions/checkout@v1
+      # Docker registry login
+      - name: Docker login
+        env:
+          DOCKER_USERNAME: ${{ secrets.ACCESS_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.ACCESS_TOKEN }}
+        run: echo "$DOCKER_PASSWORD" | docker login docker.pkg.github.com -u "$DOCKER_USERNAME" --password-stdin
+      # Docker image build process
+      - name: Docker build
+        run: docker build . --tag docker.pkg.github.com/kpkristjansson/jenkins-python3-slave/jenkins-python3-slave:$(date +%s)
+      # Push docker image to registry
+      - name: Docker push
+        run: |
+          docker push docker.pkg.github.com/kpkristjansson/jenkins-python3-slave/jenkins-python3-slave:$(date +%s)
