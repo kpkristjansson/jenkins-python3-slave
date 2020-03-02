@@ -7,5 +7,6 @@ RUN apt-get install -y \
         python3-pip \
         jq \
         git \
-        zip
+        zip \
+        python3-venv
 USER jenkins
