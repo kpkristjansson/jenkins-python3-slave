@@ -37,5 +37,6 @@ RUN apt install -y \
         python-httplib2 \
         python-crypto \
         python-setuptools \
+        python-psutil \
         sshpass
 USER jenkins
