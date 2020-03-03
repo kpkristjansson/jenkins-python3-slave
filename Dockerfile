@@ -24,6 +24,7 @@ RUN apt install -y \
         jq \
         git \
         zip \
+        vim \
         python3-venv
 RUN apt update
 RUN echo "deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main" >> /etc/apt/sources.list
@@ -39,4 +40,3 @@ RUN apt install -y \
         python-setuptools \
         python-psutil \
         sshpass
-USER jenkins
