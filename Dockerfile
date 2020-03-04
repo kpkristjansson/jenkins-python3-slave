@@ -40,3 +40,6 @@ RUN apt install -y \
         python-setuptools \
         python-psutil \
         sshpass
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+RUN apt install nodejs
+RUN npm install -g aws-cdk
