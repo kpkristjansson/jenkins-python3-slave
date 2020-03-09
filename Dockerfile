@@ -17,7 +17,7 @@ RUN wget https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tgz
 RUN tar -xf Python-3.7.4.tgz
 RUN cd Python-3.7.4 && \
         ./configure --enable-optimizations && \
-        make altinstall
+        make install
 RUN apt update
 RUN apt install -y \
         python3-pip \
